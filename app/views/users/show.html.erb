@@ -1,0 +1,66 @@
+<div class="user-wrap">
+
+  <div id="user-follow">
+
+    <div class="user-header">
+      <div class="user-name">
+        <%= "#{@user.nickname}さんの詳細ページ" %>
+      </div>
+
+      <div class="follow-unfollow">
+        <% if @user != current_user %>
+          <% if @follow %>
+            <%= link_to user_follow_path(@user, @follow), method: :delete, remote: true, class: :unfollow_btn do %>
+              <div class="unfollow">
+                フォロー解除
+              </div>
+            <% end %>
+          <% else %>
+            <%= link_to user_follows_path(@user), method: :post, remote: true, class: :follow_btn do %>
+              <div class="follow">
+                フォローする
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <div class="user-update">
+            プロフィールを編集
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="follow-length">
+      <div class="user-follow">
+        <%= link_to "フォロー #{@following.length}", user_user_following_path(@user) ,class: :user_follow_length %>
+      </div>
+
+      <div class="user-follower">
+        <%= link_to "フォロワー #{@followed.length}", user_user_followed_path(@user) ,class: :user_follow_length %>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="user-show">
+    <%= link_to "トップページに戻る", root_path %>
+
+    <div class="user-show-like"> 
+      <%="#{@user.nickname}さんの投稿" %>
+    </div>
+
+    <% @posts.each do |post| %>
+      <div class="post">
+        <div class="post-date">
+          投稿日時：<%= l post.created_at %>
+        </div>
+        <div class="post-content">
+          投稿者：<%= post.user.nickname %><br>
+          投稿内容：<%= post.content %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
