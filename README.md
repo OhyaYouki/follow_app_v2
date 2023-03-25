@@ -35,6 +35,7 @@
 | Column             | Type              | Options                       |
 | ------------------ | ----------------- | ------------------------------|
 | nickname           | string            | null: false                   |
+| user_id            | integer           | null: false                   | <!--これは必要ないかもしれない -->
 
 ### Association
 
