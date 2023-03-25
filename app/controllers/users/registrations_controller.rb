@@ -14,8 +14,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # 止まるか確認
     # binding.pry
-    
+
     super
+
+    # この時点で@userに新規登録したデータが入っているかの確認
+    # binding.pry
+
+    # followingsテーブルへの保存
+    Following.create(nickname:@user.nickname,user_id:@user.id)
   end
 
   # GET /resource/edit
